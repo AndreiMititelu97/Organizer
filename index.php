@@ -15,7 +15,7 @@
             
             $_SESSION['user'] = $email;
         }else{
-            $_SESSION['connect_error'] = 'Log in error';
+            $_SESSION['connect_error'] = 'Log in error!';
         }
     }
 ?>
