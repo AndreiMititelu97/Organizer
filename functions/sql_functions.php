@@ -23,10 +23,10 @@
                      );
  */
 
-function connectDB($host = 'localhost',
-                   $user = 'root',
-                   $pass = '',
-                   $db = 'organizer')
+function connectDB($host = 'mariadb',
+                   $user = 'andrei',
+                   $pass = 'andrei',
+                   $db = 'Organizer')
 {
     $conn = new mysqli($host, $user, $pass, $db);
     if($conn -> connect_error) die($conn -> connect_error);
@@ -99,7 +99,7 @@ function getTasks($id_user)
 {
     $link = connectDB();
     $query = "SELECT id,titlu,data,tip,descriere,status from Task WHERE id_utilizator = '$id_user'";
-    $resultSet = $link ->query($query);
+    $resultSet = $link -> query($query);
     $resultArray = $resultSet -> fetch_all(MYSQLI_ASSOC);
     
     return $resultArray;
