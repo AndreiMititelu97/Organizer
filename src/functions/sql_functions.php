@@ -23,9 +23,9 @@
                      );
  */
 
-function connectDB($host = 'localhost',
+function connectDB($host = 'mysql',
                    $user = 'root',
-                   $pass = '',
+                   $pass = 'root',
                    $db = 'organizer')
 {
     $conn = new mysqli($host, $user, $pass, $db);
@@ -99,7 +99,7 @@ function getTasks($id_user)
 {
     $link = connectDB();
     $query = "SELECT id,titlu,data,tip,descriere,status from Task WHERE id_utilizator = '$id_user'";
-    $resultSet = $link ->query($query);
+    $resultSet = $link -> query($query);
     $resultArray = $resultSet -> fetch_all(MYSQLI_ASSOC);
     
     return $resultArray;
