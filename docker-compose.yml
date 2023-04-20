@@ -1,27 +1,19 @@
-version: "3.8"
+version: "3.9"
 services:
-  php-apache:
-    container_name: php-apache
-    # image: php:7.4.25-apache
-    build: .
-
-    depends_on:
-      - mariadb
-    volumes:
-      - ./:/var/www/html/
+  mysql:
+    image: docker.io/mariadb:10.7.3
     ports:
-      - 8000:80
-
-  mariadb:
-    container_name: mariadb
-    image: mariadb:latest
-    restart: always
+      - 3306:3306
+    volumes:
+      - "./schema.sql:/docker-entrypoint-initdb.d/schema.sql"
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: Organizer
-      MYSQL_USER: andrei
-      MYSQL_PASSWORD: andrei
+       MYSQL_ROOT_PASSWORD: 'root'
+       MYSQL_DATABASE: 'organizer'
+       MYSQL_PASSWORD: 'root'
+  php:
+    image: docker.io/trafex/php-nginx:2.4.0
     ports:
-      - 9906:3306
+      - 8080:8080
     volumes:
-      - /opt/lampp/mysql/Organizer/organizerBackup.sql:/docker-entrypoint-initdb.d/organizerBackup.sql
+      - "./src:/var/www/html"
+

@@ -23,10 +23,10 @@
                      );
  */
 
-function connectDB($host = 'mariadb',
-                   $user = 'andrei',
-                   $pass = 'andrei',
-                   $db = 'Organizer')
+function connectDB($host = 'mysql',
+                   $user = 'root',
+                   $pass = 'root',
+                   $db = 'organizer')
 {
     $conn = new mysqli($host, $user, $pass, $db);
     if($conn -> connect_error) die($conn -> connect_error);
